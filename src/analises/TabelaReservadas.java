@@ -20,6 +20,18 @@ public class TabelaReservadas {
         tabela.put(2, "uses");
         tabela.put(3, "begin");
         tabela.put(4, "end");
+        tabela.put(5,"write");
+        tabela.put(6, "writeln");
+        tabela.put(7, "read");
+        tabela.put(8, "readln");
+        tabela.put(9,"array");
+        tabela.put(10,"const");
+        tabela.put(11,"var");
+        tabela.put(12,"integer");
+        tabela.put(13,"real");
+        tabela.put(14,"boolean");
+        tabela.put(15,"char");
+        tabela.put(16,"string");
         //Todo: Adicionar demais palavras reservadas
     }
     

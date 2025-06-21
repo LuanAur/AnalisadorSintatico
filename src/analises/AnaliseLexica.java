@@ -62,7 +62,7 @@ public class AnaliseLexica {
                 i++;
             }
             
-            if (c == '.') { //verifica se é real
+            if (c == '.' && i < s.length() && s.charAt(i) != '.') {
                 token.add(c);
                 c = cabecote();
                 i++;
@@ -78,8 +78,7 @@ public class AnaliseLexica {
                         i++;
                     }
                     
-                }
-                else {
+                }else {
                     token.setTipo(TiposToken.ERRO); //retorna erro se não conter dígito depois do .
                     return token;
                 }
@@ -106,12 +105,31 @@ public class AnaliseLexica {
             
             return token;
         }
-        else if (c == ':') { //verifica :
+        else if (c == '[' || c == ']') {
             token.add(c);
             c = cabecote();
             i++;
             token.setTipo(TiposToken.PONTUACAO);
-            
+            return token;
+        }
+        else if (c == '^') {
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            return token;
+        }
+        else if (c == '.') {
+            token.add(c);
+            c = cabecote();
+            i++;
+
+            if (c == '.') {
+                token.add(c);
+                c = cabecote();
+                i++;
+            }
+            token.setTipo(TiposToken.PONTUACAO);
             return token;
         }
         else if (c == ';') { //verifica ;
@@ -122,15 +140,7 @@ public class AnaliseLexica {
             
             return token;
         }
-        else if (c == '.') { //verifica .
-            token.add(c);
-            c = cabecote();
-            i++;
-            token.setTipo(TiposToken.PONTUACAO);
-            
-            return token;
-        }
-        else if (c == ',') { //verifica ,
+        if (c == ',') { //verifica ,
             token.add(c);
             c = cabecote();
             i++;
@@ -145,7 +155,34 @@ public class AnaliseLexica {
             token.setTipo(TiposToken.PONTUACAO);
             
             return token;
-        }// Todo: adicionar outros símbolos
+        }
+        else if (c == ':') {
+            token.add(c);
+            c = cabecote();
+            i++;
+            if (c == '=') {
+                token.add(c);
+                c = cabecote();
+                i++;
+            }
+
+            token.setTipo(TiposToken.PONTUACAO);
+            return token;
+        }
+        else if (c == '=') {
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            return token;
+        }
+        else if (c == '(' || c == ')') {
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            return token;
+        }
         else {
             token.add(c);
             System.out.println("C: " + c);
